@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Layout } from "../components/Layout";
 import { useWeb3 } from "../context/Web3Context";
 import { ALCHEMY_API_KEY } from "../config/web3";
-import { fetchOwnedMiniBrokers, OwnedNft } from "../lib/alchemyNft";
+import { fetchOwnedMiniBrokers, OwnedNft } from "../lib/alchemyNfts";
 
 type LoadState = "IDLE" | "LOADING" | "LOADED" | "ERROR";
 

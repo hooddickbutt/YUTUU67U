@@ -3,10 +3,14 @@ import { useWeb3 } from "../context/Web3Context";
 import { ethers } from "ethers";
 import { WEB3_CONFIG, STONKBROKER_BUY_URL, IPFS_GATEWAY } from "../config/web3";
 
-// Turns "ipfs://CID/1.json" or "ipfs://CID/" into a fetchable https gateway URL.
+// Turns "ipfs://CID/1.json" or "ipfs://CID/1" into a fetchable https gateway URL.
 function toGatewayUrl(uri: string): string {
   if (!uri) return "";
-  if (uri.startsWith("ipfs://")) return IPFS_GATEWAY + uri.replace("ipfs://", "");
+  if (uri.startsWith("ipfs://")) {
+    const path = uri.replace("ipfs://", "");
+    const gateway = IPFS_GATEWAY.endsWith("/") ? IPFS_GATEWAY : IPFS_GATEWAY + "/";
+    return gateway + path;
+  }
   return uri;
 }
 
@@ -40,7 +44,9 @@ const IpfsPreviewCarousel: React.FC<{ baseUri: string; revealed: boolean; maxSup
         try {
           const res = await fetch(toGatewayUrl(baseUri));
           const meta = await res.json();
-          if (!cancelled && meta.image) setImages([toGatewayUrl(meta.image)]);
+          if (!cancelled && (meta.image || meta.image_url)) {
+            setImages([toGatewayUrl(meta.image || meta.image_url)]);
+          }
         } catch {
           /* keep placeholder fallback */
         }
@@ -48,12 +54,20 @@ const IpfsPreviewCarousel: React.FC<{ baseUri: string; revealed: boolean; maxSup
       }
 
       // Post-reveal: baseUri + tokenId (no extension) per the contract's tokenURI().
+      let formattedBase = baseUri.trim();
+      if (!formattedBase.endsWith("/")) {
+        formattedBase += "/";
+      }
+
       const results: string[] = [];
       for (const id of tokenIds) {
         try {
-          const res = await fetch(toGatewayUrl(baseUri) + id);
+          const res = await fetch(toGatewayUrl(formattedBase + id));
           const meta = await res.json();
-          if (meta.image) results.push(toGatewayUrl(meta.image));
+          const img = meta.image || meta.image_url;
+          if (img) {
+            results.push(toGatewayUrl(img));
+          }
         } catch {
           /* skip a missing/unavailable id */
         }

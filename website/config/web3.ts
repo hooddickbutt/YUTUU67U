@@ -42,7 +42,7 @@ export const WEB3_CONFIG: Web3Config = {
   NFT_CONTRACT_ADDRESS:
     process.env.NEXT_PUBLIC_NFT_CONTRACT_ADDRESS || "0x6a25D7E96256e7317925845dF639862865D1d6AB",
   // Fixed mint payment token, as specified.
-  MINT_TOKEN_ADDRESS: "0xe934e36a439c94017b64a3fece66af12099abf50",
+  MINT_TOKEN_ADDRESS: "0x042D4d8EA50d5b812A93291f40Ee7ad8d8BeD274",
 };
 
 // ==========================================

@@ -1,0 +1,12 @@
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/admin/overview": "pages/admin/overview.js",
+  "/mint": "pages/mint.js",
+  "/admin/payment": "pages/admin/payment.js",
+  "/admin/reveal": "pages/admin/reveal.js",
+  "/admin/mint": "pages/admin/mint.js",
+  "/admin/royalty": "pages/admin/royalty.js",
+  "/admin/contract": "pages/admin/contract.js"
+}

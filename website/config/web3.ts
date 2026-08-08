@@ -1,0 +1,64 @@
+export interface ChainConfig {
+  CHAIN_ID: number;
+  CHAIN_NAME: string;
+  RPC_URL: string;
+  EXPLORER_URL: string;
+  CURRENCY_SYMBOL: string;
+}
+
+// ==========================================
+// Robinhood Chain — Testnet + Mainnet
+// ==========================================
+export const ROBINHOOD_TESTNET: ChainConfig = {
+  CHAIN_ID: 46630,
+  CHAIN_NAME: "Robinhood Chain Testnet",
+  RPC_URL: "https://rpc.testnet.chain.robinhood.com",
+  EXPLORER_URL: "https://explorer.testnet.chain.robinhood.com",
+  CURRENCY_SYMBOL: "RH",
+};
+
+export const ROBINHOOD_MAINNET: ChainConfig = {
+  CHAIN_ID: 4663,
+  CHAIN_NAME: "Robinhood Chain",
+  RPC_URL: "https://rpc.mainnet.chain.robinhood.com",
+  EXPLORER_URL: "https://robinhoodchain.blockscout.com",
+  CURRENCY_SYMBOL: "RH",
+};
+
+// Flip this to switch the whole site between testnet and mainnet at build time.
+// Can also be driven by NEXT_PUBLIC_NETWORK=mainnet|testnet at build/deploy time.
+const USE_MAINNET = process.env.NEXT_PUBLIC_NETWORK === "mainnet";
+
+export const ACTIVE_CHAIN: ChainConfig = USE_MAINNET ? ROBINHOOD_MAINNET : ROBINHOOD_TESTNET;
+
+export interface Web3Config extends ChainConfig {
+  NFT_CONTRACT_ADDRESS: string;
+  MINT_TOKEN_ADDRESS: string;
+}
+
+export const WEB3_CONFIG: Web3Config = {
+  ...ACTIVE_CHAIN,
+  // Fill this in after `npm run deploy:testnet` / `deploy:mainnet` in /hardhat.
+  NFT_CONTRACT_ADDRESS:
+    process.env.NEXT_PUBLIC_NFT_CONTRACT_ADDRESS || "0x6a25D7E96256e7317925845dF639862865D1d6AB",
+  // Fixed mint payment token, as specified.
+  MINT_TOKEN_ADDRESS: "0x042D4d8EA50d5b812A93291f40Ee7ad8d8BeD274",
+};
+
+// ==========================================
+// WalletConnect / Reown AppKit
+// ==========================================
+// Get a free Project ID at https://cloud.reown.com (30 seconds, no cost).
+// Left blank on purpose — fill in .env.local as NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID.
+export const WALLETCONNECT_PROJECT_ID = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || "";
+
+// ==========================================
+// $StonkBroker token — buy link (OpenSea)
+// ==========================================
+export const STONKBROKER_BUY_URL =
+  "https://opensea.io/collection/stonkbrokers-434284142/tokens?timeframe=seven_days";
+
+// ==========================================
+// IPFS gateway used for the rotating preview-card images on the mint page
+// ==========================================
+export const IPFS_GATEWAY = process.env.NEXT_PUBLIC_IPFS_GATEWAY || "https://ipfs.io/ipfs/";

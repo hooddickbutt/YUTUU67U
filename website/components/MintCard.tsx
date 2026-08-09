@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { useWeb3 } from "../context/Web3Context";
 import { ethers } from "ethers";
 import { WEB3_CONFIG, STONKBROKER_BUY_URL, IPFS_GATEWAY } from "../config/web3";
+import { WEB3_CONFIG, Minibrokers_BUY_URL, IPFS_GATEWAY } from "../config/web3";
 
 // Turns "ipfs://CID/1.json" or "ipfs://CID/1" into a fetchable https gateway URL.
 function toGatewayUrl(uri: string): string {

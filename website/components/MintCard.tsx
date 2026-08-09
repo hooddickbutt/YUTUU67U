@@ -171,6 +171,16 @@ export const MintCard: React.FC = () => {
           BUY $StonkBroker ↗
         </a>
       </div>
+      {/* Buy $StonkBroker */}
+        <a
+          href={MINIBROKERS_BUY_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="w-full py-2.5 text-center bg-zinc-900 border border-[#CCFF00]/40 text-[#CCFF00] font-bold text-xs tracking-widest hover:bg-[#CCFF00]/10 transition-colors"
+        >
+          BUY Mini Brokers ↗
+        </a>
+      </div>
 
       {/* Mint Control Terminal */}
       <div className="lg:col-span-7 border border-zinc-800 bg-[#0f1115] p-6 space-y-6">

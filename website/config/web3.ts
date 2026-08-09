@@ -62,6 +62,10 @@ export const WALLETCONNECT_PROJECT_ID = process.env.NEXT_PUBLIC_WALLETCONNECT_PR
 export const STONKBROKER_BUY_URL =
   "https://opensea.io/collection/stonkbrokers-434284142/tokens?timeframe=seven_days";
 
+export const Minibrokers_BUY_URL =
+  "https://opensea.io/collection/mini-brokers";
+
+
 // ==========================================
 // IPFS gateway used for the rotating preview-card images on the mint page
 // ==========================================

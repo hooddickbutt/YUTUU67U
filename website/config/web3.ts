@@ -34,6 +34,7 @@ export const ACTIVE_CHAIN: ChainConfig = USE_MAINNET ? ROBINHOOD_MAINNET : ROBIN
 export interface Web3Config extends ChainConfig {
   NFT_CONTRACT_ADDRESS: string;
   MINT_TOKEN_ADDRESS: string;
+  BURN_LAB_CONTRACT_ADDRESS: string;
 }
 
 export const WEB3_CONFIG: Web3Config = {
@@ -43,6 +44,9 @@ export const WEB3_CONFIG: Web3Config = {
     process.env.NEXT_PUBLIC_NFT_CONTRACT_ADDRESS || "0x6a25D7E96256e7317925845dF639862865D1d6AB",
   // Fixed mint payment token, as specified.
   MINT_TOKEN_ADDRESS: "0x042D4d8EA50d5b812A93291f40Ee7ad8d8BeD274",
+  // Burn Lab — separate escrow/rewards contract. Fill this in after
+  // `npm run deploy:testnet` / `deploy:mainnet` in /hardhat (deploy-burnlab.js).
+  BURN_LAB_CONTRACT_ADDRESS: process.env.NEXT_PUBLIC_BURN_LAB_CONTRACT_ADDRESS || "",
 };
 
 // ==========================================

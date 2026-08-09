@@ -52,6 +52,19 @@ export default function StakingPage() {
   return (
     <Layout>
       <div className="space-y-8">
+        {/* MINI Vault promo banner */}
+        <div className="relative border border-[#CCFF00]/40 bg-[#CCFF00] p-6 overflow-hidden">
+          <span className="pointer-events-none select-none absolute -right-2 -bottom-4 text-7xl md:text-8xl font-black text-black/10 tracking-tight">
+            STAKE
+          </span>
+          <h3 className="relative text-xl md:text-2xl font-extrabold text-black tracking-tight">
+            MINI Vault / 18.4% APY
+          </h3>
+          <p className="relative text-xs md:text-sm text-black/70 mt-1 max-w-md">
+            Collect, stake, and let the protocol do the accounting.
+          </p>
+        </div>
+
         {/* Header */}
         <div className="border border-zinc-800 bg-[#0f1115] p-6">
           <div className="flex justify-between items-start flex-wrap gap-3">
